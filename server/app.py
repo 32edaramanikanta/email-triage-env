@@ -14,7 +14,8 @@ Endpoints:
 
 from __future__ import annotations
 
-import os
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, HTTPException
