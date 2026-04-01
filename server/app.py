@@ -151,3 +151,10 @@ def action_space():
 def observation_space():
     env = EmailTriageEnv()
     return {"description": env.observation_space_description}
+def main():
+    import uvicorn
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860)
+    
+
+if __name__ == "__main__":
+    main()
