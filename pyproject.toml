@@ -1,0 +1,17 @@
+[project]
+name = "email-triage-openenv"
+version = "1.0.0"
+description = "Email triage OpenEnv environment"
+authors = [{name = "edara-manikanta"}]
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "openai"
+]
+
+[tool.setuptools]
+packages = ["."]
