@@ -34,11 +34,10 @@ from environment import EmailTriageEnv
 # ---------------------------------------------------------------------------
 # Config from environment variables
 # ---------------------------------------------------------------------------
-API_BASE_URL: str = "https://router.huggingface.co/v1"
-API_KEY: str = "replace your key here"  # or set HF_TOKEN env variable
-MODEL_NAME: str = "meta-llama/Llama-3.3-70B-Instruct"
-
-MAX_TOKENS = 512
+API_BASE_URL: str = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
+API_KEY: str = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
+MODEL_NAME: str = os.getenv("MODEL_NAME", "meta-llama/Llama-3.3-70B-Instruct")
+MAX_TOKENS = 300
 TEMPERATURE = 0.0   # Deterministic for reproducibility
 RETRY_LIMIT = 2
 
