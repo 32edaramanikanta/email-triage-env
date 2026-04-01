@@ -78,10 +78,11 @@ def health():
 
 
 @app.post("/reset", response_model=Observation)
-def reset(request: ResetRequest):
+def reset(request: Optional[ResetRequest] = None):
     global _env
     try:
-        _env = EmailTriageEnv(task_id=request.task_id)
+        task_id = request.task_id if request else "task1_basic_triage"
+        _env = EmailTriageEnv(task_id=task_id)
         obs = _env.reset()
         return obs
     except ValueError as e:
