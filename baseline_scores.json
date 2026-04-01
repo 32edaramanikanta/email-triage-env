@@ -1,0 +1,211 @@
+{
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "overall_score": 0.7776,
+  "tasks": [
+    {
+      "task_id": "task1_basic_triage",
+      "task_score": 0.84,
+      "cumulative_reward": 4.2,
+      "num_emails": 5,
+      "steps": [
+        {
+          "email_id": "t1_001",
+          "action_type": "escalate",
+          "priority": "urgent",
+          "label": "technical",
+          "reward": 1.0,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t1_002",
+          "action_type": "triage",
+          "priority": "low",
+          "label": "inquiry",
+          "reward": 0.8,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t1_003",
+          "action_type": "mark_spam",
+          "priority": "spam",
+          "label": "other",
+          "reward": 1.0,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t1_004",
+          "action_type": "draft_reply",
+          "priority": "high",
+          "label": "billing",
+          "reward": 1.0,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t1_005",
+          "action_type": "triage",
+          "priority": "low",
+          "label": "inquiry",
+          "reward": 0.4,
+          "priority_score": 1.0,
+          "label_score": 0.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        }
+      ]
+    },
+    {
+      "task_id": "task2_draft_replies",
+      "task_score": 0.697,
+      "cumulative_reward": 3.485,
+      "num_emails": 5,
+      "steps": [
+        {
+          "email_id": "t2_001",
+          "action_type": "draft_reply",
+          "priority": "high",
+          "label": "complaint",
+          "reward": 0.66,
+          "priority_score": 0.5,
+          "label_score": 0.0,
+          "reply_quality_score": 0.8666666666666667,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t2_002",
+          "action_type": "draft_reply",
+          "priority": "medium",
+          "label": "technical",
+          "reward": 0.9,
+          "priority_score": 0.5,
+          "label_score": 1.0,
+          "reply_quality_score": 1.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t2_003",
+          "action_type": "escalate",
+          "priority": "urgent",
+          "label": "complaint",
+          "reward": 0.725,
+          "priority_score": 1.0,
+          "label_score": 0.0,
+          "reply_quality_score": 0.75,
+          "escalation_score": 0.75,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t2_004",
+          "action_type": "escalate",
+          "priority": "high",
+          "label": "complaint",
+          "reward": 0.5,
+          "priority_score": 0.5,
+          "label_score": 0.0,
+          "reply_quality_score": 0.3333333333333333,
+          "escalation_score": 0.3333333333333333,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t2_005",
+          "action_type": "archive",
+          "priority": "low",
+          "label": "other",
+          "reward": 0.7,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.0,
+          "penalty": 0.0
+        }
+      ]
+    },
+    {
+      "task_id": "task3_sla_constrained",
+      "task_score": 0.7958,
+      "cumulative_reward": 3.9792,
+      "num_emails": 5,
+      "steps": [
+        {
+          "email_id": "t3_001",
+          "action_type": "escalate",
+          "priority": "urgent",
+          "label": "other",
+          "reward": 0.7375,
+          "priority_score": 1.0,
+          "label_score": 0.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.55,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t3_002",
+          "action_type": "escalate",
+          "priority": "high",
+          "label": "account",
+          "reward": 0.9542,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.8166666666666667,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t3_003",
+          "action_type": "escalate",
+          "priority": "urgent",
+          "label": "complaint",
+          "reward": 0.8125,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.25,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t3_004",
+          "action_type": "escalate",
+          "priority": "high",
+          "label": "technical",
+          "reward": 0.9125,
+          "priority_score": 1.0,
+          "label_score": 1.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.65,
+          "penalty": 0.0
+        },
+        {
+          "email_id": "t3_005",
+          "action_type": "escalate",
+          "priority": "high",
+          "label": "complaint",
+          "reward": 0.5625,
+          "priority_score": 0.5,
+          "label_score": 0.0,
+          "reply_quality_score": 0.0,
+          "escalation_score": 0.35,
+          "penalty": 0.0
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 14.3
+}

@@ -1,0 +1,148 @@
+name: email-triage-openenv
+version: "1.0.0"
+description: >
+  A real-world email triage and customer support environment for training and
+  evaluating AI agents. Agents process incoming customer support emails and must
+  assign priority levels, category labels, draft professional replies, or escalate
+  to human agents — simulating a genuine customer support workflow.
+
+author: hackathon-submission
+tags:
+  - openenv
+  - customer-support
+  - email-triage
+  - nlp
+  - real-world
+
+tasks:
+  - id: task1_basic_triage
+    name: "Basic Email Triage"
+    difficulty: easy
+    description: >
+      Assign the correct priority (urgent/high/medium/low/spam) and category label
+      (billing/technical/complaint/inquiry/refund/account/feedback/other) to each
+      incoming email. Choose the appropriate action type (triage/mark_spam/archive).
+    max_steps: 5
+    num_emails: 5
+    score_range: [0.0, 1.0]
+
+  - id: task2_draft_replies
+    name: "Draft Customer Replies"
+    difficulty: medium
+    description: >
+      Handle escalated customer issues. Draft appropriate professional replies for
+      complaints and technical questions. Escalate legal/fraud cases with proper
+      reasoning. Archive low-value vendor outreach. Replies are graded on tone,
+      keyword coverage, and completeness.
+    max_steps: 5
+    num_emails: 5
+    score_range: [0.0, 1.0]
+
+  - id: task3_sla_constrained
+    name: "SLA-Constrained Enterprise Triage"
+    difficulty: hard
+    description: >
+      Complex triage under strict SLA constraints. Process high-stakes emails from
+      enterprise customers, regulated financial/legal entities, and ADA complainants.
+      Must identify regulatory risk, respect SLA windows, and route escalations to
+      the correct specialized team. Penalizes SLA violations.
+    max_steps: 5
+    num_emails: 5
+    score_range: [0.0, 1.0]
+
+observation_space:
+  type: object
+  fields:
+    email:
+      type: object
+      description: "The current email to process"
+      fields:
+        id: {type: string}
+        subject: {type: string}
+        sender: {type: string}
+        sender_domain: {type: string}
+        body: {type: string}
+        received_at: {type: string, format: iso8601}
+        has_attachment: {type: boolean}
+        thread_length: {type: integer}
+        metadata: {type: object}
+    inbox_size: {type: integer, description: "Remaining emails in inbox"}
+    step: {type: integer}
+    max_steps: {type: integer}
+    task_id: {type: string}
+    task_description: {type: string}
+    history: {type: array, description: "Previous actions and rewards"}
+    context: {type: object, description: "SLA rules and templates (Task 3)"}
+
+action_space:
+  type: object
+  fields:
+    action_type:
+      type: string
+      enum: [triage, draft_reply, escalate, archive, mark_spam]
+      required: true
+    priority:
+      type: string
+      enum: [urgent, high, medium, low, spam]
+      required_for: [triage]
+    label:
+      type: string
+      enum: [billing, technical, complaint, inquiry, refund, account, feedback, other]
+      required_for: [triage]
+    reply_text:
+      type: string
+      max_length: 2000
+      required_for: [draft_reply]
+    escalation_reason:
+      type: string
+      max_length: 500
+      required_for: [escalate]
+    notes:
+      type: string
+      max_length: 500
+      optional: true
+
+reward:
+  type: object
+  range: [0.0, 1.0]
+  fields:
+    total: {type: float, range: [0.0, 1.0]}
+    priority_score: {type: float, range: [0.0, 1.0]}
+    label_score: {type: float, range: [0.0, 1.0]}
+    reply_quality_score: {type: float, range: [0.0, 1.0]}
+    escalation_score: {type: float, range: [0.0, 1.0]}
+    penalty: {type: float, range: [0.0, 1.0]}
+    breakdown: {type: object}
+
+endpoints:
+  reset:
+    method: POST
+    path: /reset
+    body: {task_id: string}
+    returns: Observation
+  step:
+    method: POST
+    path: /step
+    body: {action: Action}
+    returns: {observation: Observation, reward: Reward, done: boolean, info: object}
+  state:
+    method: GET
+    path: /state
+    returns: EpisodeState
+
+runtime:
+  language: python
+  python_version: "3.11"
+  framework: fastapi
+  inference: openai-client-compatible
+
+docker:
+  base_image: python:3.11-slim
+  port: 7860
+
+huggingface:
+  space_sdk: docker
+  tags:
+    - openenv
+    - customer-support
+    - rl-environment
