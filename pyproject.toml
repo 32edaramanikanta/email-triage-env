@@ -2,7 +2,7 @@
 name = "email-triage-openenv"
 version = "1.0.0"
 description = "Email triage OpenEnv environment"
-authors = [{name = "edara-manikanta"}]
+authors = [{name = "hackathon-submission"}]
 readme = "README.md"
 requires-python = ">=3.11"
 
@@ -10,8 +10,9 @@ dependencies = [
     "fastapi",
     "uvicorn",
     "pydantic",
-    "openai"
+    "openai",
+    "openenv>=0.2.0"
 ]
 
-[tool.setuptools]
-packages = ["."]
+[project.scripts]
+server = "server.app:app"
