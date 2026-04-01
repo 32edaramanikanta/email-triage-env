@@ -118,7 +118,9 @@ endpoints:
   reset:
     method: POST
     path: /reset
-    body: {task_id: string}
+    body:
+      task_id: string
+    body_optional: true   # ✅ ADD THIS
     returns: Observation
   step:
     method: POST
