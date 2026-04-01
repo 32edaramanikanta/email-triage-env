@@ -2,7 +2,7 @@
 name = "email-triage-openenv"
 version = "1.0.0"
 description = "Email triage OpenEnv environment"
-authors = [{name = "hackathon-submission"}]
+authors = [{name = "edara manikanta"}]
 readme = "README.md"
 requires-python = ">=3.11"
 
